@@ -4,15 +4,18 @@ import {FaShoppingCart} from "react-icons/fa";
 import avatar from "../images/image-avatar.png";
 import menu from "../images/icon-menu.svg";
 import close from "../images/icon-close.svg";
+import Cart from "./Cart";
 
 
 
 
 export default function Header () {
   const [isOpen, setIsOpen] = useState(false)
+   const [openCart, setOpenCart] = useState(false)
+
     return (
       <>
-      <header className="flex items-center justify-between p-8 border-b border-slate-400 max-w-7xl mx-auto">
+      <header className=" relative flex items-center justify-between p-8 border-b border-slate-400 max-w-7xl mx-auto">
       <div className="flex items-center justify-start gap-4">
         <ul className="flex items-center justify-start gap-4">
             {!isOpen && <li onClick={() => setIsOpen(true)} className="lg:hidden">
@@ -39,11 +42,12 @@ export default function Header () {
          </nav>
       </div>
     
-      <div>
+      <div className="">
         <ul className="flex items-center justify-start gap-4">
-          <li><button>
+          <li><button onClick={() => setOpenCart(!openCart)}>
             <FaShoppingCart className="text-2xl text-slate-600"/>
             </button></li>
+            <li>{openCart && <Cart/>}</li>
           <li><img src={avatar} alt="" className="w-10"/></li>
         </ul>
       </div>
